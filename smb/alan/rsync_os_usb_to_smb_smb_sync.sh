@@ -34,7 +34,7 @@ echo "--------------------------------------" >> "$LOG"
 
 echo "=====================================" >>"${LOG}"
 echo "SYNC FROM USB CASE TO NVME CASE STARTED" >>"${LOG}"
-rsync -avz --no-o --no-g --no-perms --progress --stats "${SOURCE_DIR}/" "${BACKUP_FOLDER}/" >>"${LOG}" 2>&1
+#rsync -avz --no-o --no-g --no-perms --progress --stats "${SOURCE_DIR}/" "${BACKUP_FOLDER}/" >>"${LOG}" 2>&1
 echo . >>"${LOG}"
 echo " SYNC FROM USB CASE TO NVME CASE FINISHED AT ${DATE}" >>"${LOG}"
 echo "=====================================" >>"${LOG}"
@@ -60,10 +60,10 @@ if [ "$NUM_FOLDERS" -le "$MAX_FOLDERS_TO_KEEP" ]; then
 fi
 
 ## Calculate the number of folders to delete
-#FOLDERS_TO_DELETE=$((NUM_FOLDERS - MAX_FOLDERS_TO_KEEP))
+FOLDERS_TO_DELETE=$((NUM_FOLDERS - MAX_FOLDERS_TO_KEEP))
 
 # Delete the oldest folders
-for ((i = 0; i < FOLDERS_TO_DEL; i++)); do
+for ((i = 0; i < FOLDERS_TO_DELETE; i++)); do
     FOLDER_TO_DELETE="${BACKUP_FOLDERS[$i]}"
     echo "Deleting $FOLDER_TO_DELETE" >>"${LOG}"
     rm -r "$FOLDER_TO_DELETE" >>"${LOG}"
