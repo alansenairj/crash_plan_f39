@@ -34,7 +34,7 @@ echo "--------------------------------------" >> "$LOG"
 
 echo "=====================================" >>"${LOG}"
 echo "SYNC FROM USB CASE TO NVME CASE STARTED" >>"${LOG}"
-#rsync -avz --no-o --no-g --no-perms --progress --stats "${SOURCE_DIR}/" "${BACKUP_FOLDER}/" >>"${LOG}" 2>&1
+rsync -avz --no-o --no-g --no-perms --progress --stats "${SOURCE_DIR}/" "${BACKUP_FOLDER}/" >>"${LOG}" 2>&1
 echo . >>"${LOG}"
 echo " SYNC FROM USB CASE TO NVME CASE FINISHED AT ${DATE}" >>"${LOG}"
 echo "=====================================" >>"${LOG}"
