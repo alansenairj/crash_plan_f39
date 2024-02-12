@@ -502,6 +502,60 @@ chmod +x ./removeoldkernels.sh
 reboot
 
 
+# Java install - download compacted file at oracle site
+
+´´´
+mkdir -p /usr/local/java
+cp /home/alan/Downloads/jdk-21_linux-x64_bin.tar.gz /usr/local/java
+cd /usr/local/java
+tar -xvzf jdk-21_linux-x64_bin.tar.gz
+cd jdk-21.0.2
+
+vi /etc/profile
+   #java
+JAVA_HOME=/usr/local/java/jdk-21.0.2
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+export JAVA_HOME
+export PATH
+´´´
+
+## user root
+update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk-21.0.2/bin/java" 1
+update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk-21.0.2/bin/javac" 1
+update-alternatives --install "/usr/bin/javaws.itweb" "javaws.itweb" "/usr/local/java/jdk-21.0.2/bin/javaws.itweb" 1
+update-alternatives --set java /usr/local/java/jdk-21.0.2/bin/java
+update-alternatives --set javac /usr/local/java/jdk-21.0.2/bin/javac
+update-alternatives --set javaws.itweb /usr/local/java/jdk-21.0.2/bin/javaws.itweb
+source /etc/profile
+exec $SHELL
+jar --version
+echo $JAVA_HOME
+cd
+vi .zshrc
+   
+   #Java
+export JAVA_HOME=/usr/local/java/jdk-21.0.2
+´´´
+
+## user alan
+´´´
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk-21.0.2/bin/java" 1
+sudo update-alternatives --install "/usr/bin/jar" "jar" "/usr/local/java/jdk-21.0.2/bin/jar" 1
+sudo update-alternatives --set java /usr/local/java/jdk-21.0.2/bin/java
+sudo update-alternatives --set jar /usr/local/java/jdk-21.0.2/bin/jar
+source .zshrc
+´´´
+## test
+´´´
+java
+jar
+jar --version
+jar
+java --version
+jar --version
+
+´´´
+
 # Nvidia install - not perfect. use site - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
 ```
 sudo dnf remove akmod-nvidia xorg-x11-drv-nvidia-cuda
