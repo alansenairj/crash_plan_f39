@@ -61,19 +61,21 @@ if [ "$NUM_FOLDERS" -le "$MAX_FOLDERS_TO_KEEP" ]; then
 	exit 0
 fi
 
-# Calculate the number of folders to delete
-FOLDERS_TO_DEL=$((NUM_FOLDERS - MAX_FOLDERS_TO_KEEP))
+## Calculate the number of folders to delete
+FOLDERS_TO_DELETE=$((NUM_FOLDERS - MAX_FOLDERS_TO_KEEP))
 
 # Delete the oldest folders
-for ((i = 0; i < FOLDERS_TO_DEL; i++)); do
-	folder_to_delete="${BACKUP_FOLDERS[$i]}"
-	echo "Deleting $folder_to_delete" >>"${LOG}"
-	rm -r "$folder_to_delete" >>"${LOG}"
+for ((i = 0; i < FOLDERS_TO_DELETE; i++)); do
+    FOLDER_TO_DELETE="${BACKUP_FOLDERS[$i]}"
+    echo "Deleting $FOLDER_TO_DELETE" >>"${LOG}"
+    rm -r "$FOLDER_TO_DELETE" >>"${LOG}"
 done
 
 # trunk-ignore(shellcheck/SC2129)
 echo "Last older backups purged at ${DATE}." >>"${LOG}"
 echo "--------------------------------------" >>"${LOG}"
+echo "Last backup purged."
+echo "--------------------------------------"
 
 #FINISHING PART
 echo "SYNC FROM $BACKUP_NAME TO SMB --FINISHED-- at $DATE" >> "$LOG"
