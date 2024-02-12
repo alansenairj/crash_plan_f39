@@ -8,6 +8,7 @@ smtp_server = 'smtprelay.unimedbh.com.br'
 smtp_port = 587
 smtp_username = 'smtp.app.sate.hml'
 smtp_password = 'bx#Xm$7x=c7H#bC%@HEDX$'
+
 smtp = smtplib.SMTP_SSL(smtp_server, smtp_port)  # For SSL
 # Set sender and recipient email addresses
 sender_email = 'sate@example.com'
@@ -24,7 +25,8 @@ message.attach(MIMEText(body, 'plain'))
 
 # Connect to the SMTP server and send the email
 try:
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
+    with smtplib.SMTP(smtp_server, smtp_port, context=None) as server:
+        server.set_debuglevel(1)  # Enable verbose output
         server.starttls()  # Use TLS (optional)
         server.login(smtp_username, smtp_password)
         server.sendmail(sender_email, recipient_email, message.as_string())
