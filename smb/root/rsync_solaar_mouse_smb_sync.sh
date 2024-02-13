@@ -1,67 +1,87 @@
 #!/bin/bash
+
+# Define name, source and destination paths
 BACKUP_NAME=MOUSE_SOLAAR
-SOURCE="/etc/xdg/autostart/solaar.desktop"
+SOURCE_DIR="/etc/xdg/autostart/solaar.desktop"
 BACKUP_BASE="/home/alan/tplink-share/critical_settings/solaar_mouse"
+
+# log and date part
 LOG="/var/log/rsync/rsync.log"
 DATE=$(date +"%Y-%m-%d_%H:%M:%S")
 TIMESTAMP=$(date +"%Y%m%d_%H-%M-%S")
 
 
 # INTRO OF SCRIPT AND LOG
-echo - >> "$LOG"
-echo - >> "$LOG"
-echo "=====================================" >> "$LOG"
-echo "SYNC FROM $BACKUP_NAME TO SMB --STARTED-- at $DATE" >> "$LOG"
+echo - >> "${LOG}"
+echo - >> "${LOG}"
+echo "=====================================" >> "${LOG}"
+echo "SYNC FROM ${BACKUP_NAME} TO ${BACKUP_BASE} --STARTED-- at ${DATE}" >> "${LOG}"
+echo "SYNC FROM ${BACKUP_NAME} TO ${BACKUP_BASE} --STARTED-- at ${DATE}"
+echo "--------------------------------------"
+
 
 # Ensure backup base directory exists
-echo "Ensure backup base directory exists"  >> "$LOG"
-mkdir -p "$BACKUP_BASE" 2>&1 >> "$LOG"
-echo "--------------------------------------" >> "$LOG"
+echo "Ensure backup base directory exists" >>"${LOG}"
+mkdir -p "${BACKUP_BASE}" >>"${LOG}" 2>&1
+echo "--------------------------------------" >>"${LOG}"
 
 # Create a folder with the timestamp
-echo " creting a folder with the timestamp" >> "$LOG"
+echo "Creating a folder with the timestamp" >> "${LOG}"
 BACKUP_FOLDER="$BACKUP_BASE/backup_$TIMESTAMP"
-mkdir -p "$BACKUP_FOLDER" 2>&1 >> "$LOG"
-echo - >> "$LOG"
-echo - >> "$LOG"
-echo "=====================================" >> "$LOG"
-echo "FOLDER CREATED AT $DATE" >> "$LOG"
-echo "--------------------------------------" >> "$LOG"
+mkdir -p "${BACKUP_FOLDER}" >> "${LOG}"  2>&1
+echo - >> "${LOG}"
+echo - >> "${LOG}"
+echo "=====================================" >> "${LOG}"
+echo "FOLDER CREATED AT ${DATE}" >> "${LOG}"
+echo "--------------------------------------" >> "${LOG}"
 
+#rsync part
+echo "=====================================" >>"${LOG}"
+echo "SYNC FROM ${BACKUP_NAME} TO ${BACKUP_BASE} STARTED" >>"${LOG}"
+rsync -avz --no-o --no-g --no-perms --progress --stats "${SOURCE_DIR}/" "${BACKUP_FOLDER}/" >>"${LOG}" 2>&1
+echo . >>"${LOG}"
+echo " SYNC FROM $BACKUP_NAME TO $BACKUP_BASE FINISHED AT ${DATE}" >>"${LOG}"
+echo "=====================================" >>"${LOG}"
 
-echo "=====================================" >> "$LOG"
-echo "SYNC FROM FSTAB TO SMB --STARTED-- at $DATE" >> "$LOG"
+# Purge old backups, keeping only the latest two
+# Change into the backup directory
+cd "${BACKUP_BASE}" || exit
+echo " I am at $(pwd) to start to purge old backups"  >>"${LOG}" 2>&1
 
-# Run rsync to synchronize the source to the backup folder
-rsync -avz --no-o --no-g --no-perms --progress --stats "$SOURCE" "$BACKUP_FOLDER" 2>&1 >> "$LOG"
+# List all backup folders and sort them based on the timestamp in the folder name
+BACKUP_FOLDERS=($(ls -d backup_* | sort -t_ -k2 -n)) >> "${LOG}" 2>&1
 
-## Purge old backups, keeping only the latest two
-echo "Purging old backups. Keeping last two"
-echo "Purging old backups. Keeping last two" >> "$LOG"
-# Define the DIRECTORY where your FOLDERS are located
-DIRECTORY="$BACKUP_BASE"
-# List FOLDERS based on timestamp
-FOLDERS=$(ls -l "$DIRECTORY" | grep '^d' | awk '{print $9}')
-# Count the number of FOLDERS
-FOLDER_COUNT=$(echo "$FOLDERS" | wc -l)
-# Check if there are more than 2 FOLDERS
-if [ "$FOLDER_COUNT" -gt 2 ]; then
-    # List FOLDERS based on timestamp, skip the first 2 (keep the latest 2), and remove the rest
-    FOLDERS_to_remove=$(echo "$FOLDERS" | sort | head -n -2)
-    
-    # Print the list of FOLDERS that would be removed
-    echo "FOLDERS to be removed:" >> "$LOG"
-    echo "$FOLDERS_to_remove" >> "$LOG"
-    
-    # remove the FOLDERS
-    echo "$FOLDERS_to_remove" | xargs -I {} rm -r "$DIRECTORY/{}" 2>&1 >> "$LOG"
+# Determine the number of backup folders
+NUM_FOLDERS=${#BACKUP_FOLDERS[@]}
+
+# Set the maximum number of folders to keep
+MAX_FOLDERS_TO_KEEP=3
+
+# Ensure there are at least two folders before deleting any
+if [ "$NUM_FOLDERS" -le "$MAX_FOLDERS_TO_KEEP" ]; then
+    echo "Not enough folders to delete. Exiting."
+    exit 0
 fi
-echo "Last backup purged." >> "$LOG"
-echo "--------------------------------------" >> "$LOG"
+
+## Calculate the number of folders to delete
+FOLDERS_TO_DELETE=$((NUM_FOLDERS - MAX_FOLDERS_TO_KEEP))
+
+# Delete the oldest folders
+for ((i = 0; i < FOLDERS_TO_DELETE; i++)); do
+    FOLDER_TO_DELETE="${BACKUP_FOLDERS[$i]}"
+    echo "Deleting ${FOLDER_TO_DELETE}" >>"${LOG}"
+    rm -r "${FOLDER_TO_DELETE}" >>"${LOG}"
+done
+
+echo "Last older backups purged at ${DATE}." >>"${LOG}"
+echo "--------------------------------------" >>"${LOG}"
+echo "Last backup purged."
+echo "--------------------------------------"
 
 #FINISHING PART
-echo "SYNC FROM $BACKUP_NAME TO SMB --FINISHED-- at $DATE" >> "$LOG"
-echo "=====================================" >> "$LOG"
-echo "SYNC FROM $BACKUP_NAME TO SMB --FINISHED-- at $DATE"
+echo "SYNC FROM ${BACKUP_NAME} TO ${BACKUP_BASE} --FINISHED-- at ${DATE}" >>"${LOG}"
+echo "=====================================" >>"${LOG}"
+echo "SYNC FROM ${BACKUP_NAME} TO ${BACKUP_BASE} --FINISHED-- at ${DATE}"
+echo "====================================="
 
 

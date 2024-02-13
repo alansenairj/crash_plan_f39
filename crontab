@@ -2,7 +2,7 @@ SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
 
-# For details see man 4 crontabs
+# For details see man 4 crontabs - FOR ROOT USER
 
 # Example of job definition:
 # .---------------- minute (0 - 59)
@@ -14,8 +14,8 @@ MAILTO=root
 # *  *  *  *  * user-name  command to be executed
 
 # por hora
-0 */4 * * *  "/home/alan/scripts/smb/alan/rsync_os_usb_to_nvme_smb.sh"
-0 */4 * * *  "/home/alan/scripts/smb/alan/rsync_os_usb_to_smb_smb.sh"
+0 */8 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_nvme_smb.sh"
+0 */8 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_smb_smb.sh"
 
 # por dia
 0 9 * * *  "/home/alan/scripts/usb/root/rsync_vpnconex_usb_sync.sh" >/dev/null
@@ -26,6 +26,9 @@ MAILTO=root
 02 9 * * 2 "/home/alan/scripts/smb/root/rsync_fstab_smb_sync.sh" >/dev/null
 05 9 * * 2 "/home/alan/scripts/usb/root/rsync_yumrepos_usb_sync.sh" >/dev/null
 09 9 * * 2 "/home/alan/scripts/smb/root/rsync_yumrepos_smb_sync.sh" >/dev/null
+09 10 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_nvme_smb.sh"
+25 10 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_smb_smb.sh"
+
 
 # por mes
 0 10 1 * *  "/home/alan/scripts/smb/root/rsync_dnf_smb_sync.sh" >/dev/null
