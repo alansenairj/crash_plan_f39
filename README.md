@@ -295,7 +295,7 @@ sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264
 sudo dnf install  solaar.noarch
 sudo dnf install  solaar-udev.noarch
 sudo dnf insatall gimp
-
+sudo dnf install openfortivpn
 ```
 
 # konsave - SAVE KDE THEME SETTINGS
@@ -502,7 +502,7 @@ chmod +x ./removeoldkernels.sh
 reboot
 
 
-# Java install - download compacted file at oracle site
+# Java install - download compacted file at oracle site - individual users - alan/root
 
 ´´´
 mkdir -p /usr/local/java
@@ -553,6 +553,19 @@ jar --version
 jar
 java --version
 jar --version
+
+# for all users aproach - worked well doing script in profile.d
+ex for java 1.8:
+tar -xvf jdk-8u391-linux-x64.tar.gz
+mv jdk1.8.0_391/ /opt
+:>/etc/profile.d/java.sh
+chmod a+x /etc/profile.d/java.sh
+vi /etc/profile.d/java.sh
+
+#!/bin/bash
+export JAVA_HOME=/opt/jdk1.8.0_391
+export PATH=$JAVA_HOME/bin:$PATH
+
 
 ´´´
 
