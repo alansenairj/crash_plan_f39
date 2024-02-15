@@ -315,25 +315,27 @@ cd ~/Downloads/konsave sudo chmod +x ./install.sh
 
 Install
 ./install.sh
+```
 
-Usage
-Get Help
+## Konsave Usage
+
+### Get Help
 konsave -h
 
-Save current configuration as a profile
+### Save current configuration as a profile
 konsave -s <profile name>
 
-List all profiles
+### List all profiles
 konsave -l
 
-Remove a profile
+### Remove a profile
 konsave -r <profile id>
 
-Apply a profile
+### Apply a profile
 konsave -a <profile id>
-You may need to log out and log in to see all the changes.
+!!! You may need to log out and log in to see all the changes.!!!
+!!! if a profile has same name it cannot be imported !!! 
 
-```
 
 ## USE AND CREATE THEME BACKUP
 
