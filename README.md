@@ -296,6 +296,25 @@ sudo dnf install  solaar.noarch
 sudo dnf install  solaar-udev.noarch
 sudo dnf insatall gimp
 sudo dnf install openfortivpn
+sudo dnf install esmtp-local-delivery
+sudo dnf install moreutils.x86_64
+hdparm-9.65-2.fc39.x86_64
+grsync-1.3.1-1.fc39.x86_64
+borgbackup-1.2.7-1.fc39.x86_64
+syncthing-1.27.2-1.fc39.x86_64
+qbittorrent-1:4.6.2-1.fc39.x86_64
+ncdu-1.19-1.fc39.x86_64
+bpytop-1.0.68-5.fc39.noarch
+openh264-2.3.1-2.fc39.x86_64
+mozilla-openh264-2.3.1-2.fc39.x86_64
+gstreamer1-plugin-openh264-1.22.1-1.fc39.x86_64
+wireshark-1:4.0.8-2.fc39.x86_64
+samba-2:4.19.4-3.fc39.x86_64
+timeshift-22.11.2-2.fc39.x86_64
+ripgrep-14.0.3-1.fc39.x86_64
+python3-pip-23.2.1-1.fc39.noarch
+easyeffects-7.1.3-1.fc39.x86_64
+
 ```
 
 # docker
