@@ -314,6 +314,7 @@ timeshift-22.11.2-2.fc39.x86_64
 ripgrep-14.0.3-1.fc39.x86_64
 python3-pip-23.2.1-1.fc39.noarch
 easyeffects-7.1.3-1.fc39.x86_64
+sudo dnf install virt-viewer
 
 ```
 
