@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCE="/mnt/sdd1/backup_home/"
-DEST="/home/alan/tplink-share/home/"
+DEST="/mnt/tplink-share/home/"
 LOG="/var/log/rsync/rsync.log"
 DATE=$(date +"%Y-%m-%d_%H:%M:%S")
 

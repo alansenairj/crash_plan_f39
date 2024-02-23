@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=REMINA
 SOURCE="/home/alan/.var/app/org.remmina.Remmina/data/remmina"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/remina/"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/remina/"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

@@ -3,7 +3,7 @@
 # define name and paths
 BACKUP_NAME=FILEZILLA
 SOURCE="/home/alan/.config/filezilla"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/filezilla"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/filezilla"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

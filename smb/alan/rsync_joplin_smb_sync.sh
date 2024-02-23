@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=JOPLIN
 SOURCE_DIR="/home/alan"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/joplin"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/joplin"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

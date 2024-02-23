@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=CRONTAB
 SOURCE="/var/spool/cron"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/cron"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/cron"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

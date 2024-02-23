@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=KEEPASS_ALAN
 SOURCE_DIR="/home/alan/OneDrive/keepass"
-BACKUP_BASE="/home/alan/tplink-share/keepass/alan"
+BACKUP_BASE="/mnt/tplink-share/keepass/alan"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

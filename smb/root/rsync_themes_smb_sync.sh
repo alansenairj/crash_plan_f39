@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=THEMES
 SOURCE="/usr/share/backgrounds"
-BACKUP_BASE="/home/alan/tplink-share/themes/backgroud"
+BACKUP_BASE="/mnt/tplink-share/themes/backgroud"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

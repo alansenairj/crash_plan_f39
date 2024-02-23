@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=FSTAB
 SOURCE_DIR="/etc/fstab"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/fstab"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/fstab"
 LOG="/var/log/rsync/rsync.log"
 DATE=$(date +"%Y-%m-%d_%H:%M:%S")
 TIMESTAMP=$(date +"%Y%m%d_%H-%M-%S")

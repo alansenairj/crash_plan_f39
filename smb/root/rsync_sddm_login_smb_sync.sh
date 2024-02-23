@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=LOGIN_SCREEN
 SOURCE="/usr/share/sddm/themes"
-BACKUP_BASE="/home/alan/tplink-share/themes/sddm_login_screen"
+BACKUP_BASE="/mnt/tplink-share/themes/sddm_login_screen"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

@@ -2,7 +2,7 @@
 #KONSAVE COMMAND NOT BEING ENCAPSULATED - MUST RUN MANUALLY
 # Define name, source and destination paths
 SOURCE="/home/alan/themes/konsave"
-BACKUP_BASE="/home/alan/tplink-share/themes/konsave"
+BACKUP_BASE="/mnt/tplink-share/themes/konsave"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

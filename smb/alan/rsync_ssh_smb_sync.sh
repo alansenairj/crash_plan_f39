@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=SSH
 SOURCE_DIR="/home/alan/.ssh"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/ssh_backups"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/ssh_backups"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

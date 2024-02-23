@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=VPN
 SOURCE="/etc/NetworkManager/system-connections"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/NetworkManager_VPN"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/NetworkManager_VPN"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

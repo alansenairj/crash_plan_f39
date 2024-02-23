@@ -3,7 +3,7 @@
 # Define name, source and destination paths. SOURCE FILE NEEDS TO REMOVE / FROM RSYNC
 BACKUP_NAME=DNF
 SOURCE_DIR="/etc/dnf/dnf.conf"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/dnf"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/dnf"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

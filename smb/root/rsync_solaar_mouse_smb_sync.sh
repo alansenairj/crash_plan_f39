@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=MOUSE_SOLAAR
 SOURCE_DIR="/etc/xdg/autostart/solaar.desktop"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/solaar_mouse"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/solaar_mouse"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

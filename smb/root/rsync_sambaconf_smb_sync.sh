@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=SAMBACONF
 SOURCE_DIR="/etc/samba/smb.conf"
-BACKUP_BASE="/home/alan/tplink-share/critical_settings/samba"
+BACKUP_BASE="/mnt/tplink-share/critical_settings/samba"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

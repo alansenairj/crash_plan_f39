@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=KEEPASS_CSI
 SOURCE_DIR="/home/alan/csi_senhas"
-BACKUP_BASE="/home/alan/tplink-share/keepass/csi"
+BACKUP_BASE="/mnt/tplink-share/keepass/csi"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"

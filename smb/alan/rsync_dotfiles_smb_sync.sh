@@ -3,7 +3,7 @@
 # Define name, source and destination paths
 BACKUP_NAME=DOTFILES
 SOURCE_DIR="/home/alan"
-BACKUP_BASE="/home/alan/tplink-share/console_home_dotfiles"
+BACKUP_BASE="/mnt/tplink-share/console_home_dotfiles"
 
 # log and date part
 LOG="/var/log/rsync/rsync.log"
