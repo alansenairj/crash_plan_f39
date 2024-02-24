@@ -19,9 +19,11 @@
 ```
 
 # READ LOGS
-´´´
+```
 less /var/log/rsync/rsync.log
-´´´
+```
+# PATH TABLES
+
 | PATH SOURCE | USB  |  SMB | ROTINE  |  FWBACKUP |
 |---|---|---|---|---|
 | /home/alan/  | /mnt/sdd1/console_home_dotfiles  | /home/alan/tplink-share/console_home_dotfiles  | DOT FILES  | FWBACKUP  |
@@ -43,7 +45,9 @@ less /var/log/rsync/rsync.log
 | /etc/NetworkManager/system-connections  | /mnt/sdd1/critical_settings/NetworkManager_VPN/  |  /home/alan/tplink-share/critical_settings/NetworkManager_VPN/ |  VPN |  RSYNC |
 | /etc/yum.repos.d  | /mnt/sdd1/critical_settings/yumrepos/  | /home/alan/tplink-share/critical_settings/yumrepos/  | REPOS DNF  | RSYNC  |
 
-| HORA  | DIA   | SEMANA | MES  | ANO  |
+# SCHEDULING TABLE
+
+| HOUR  | DAY   | WEEK | MONTH  | YEAR  |
 |---|---|---|---|---|
 | KEEPASS ALAN  | SSH  | FSTAB  | DNF  | HOME  |
 | KEEPASS CSI  | BORG HOME  | KONSAVE  | DOT FILES  |   |
@@ -111,7 +115,6 @@ MAILTO=root
 
 # SOURCE TARGETS
 
-´´´
 ## timeshift
 /mnt/sdf1/timeshift/
 
@@ -153,11 +156,12 @@ MAILTO=root
 
 remina 
 /home/alan/.var/app/org.remmina.Remmina/data/remmina/
-´´´
 
 # DESTINATION USB TARGETS
-´´´
+
 ## DOT_FILES
+
+```
 DEST_DIR="/mnt/sdd1/console_home_dotfiles/"
 FILES_TO_RSYNC=(
     "$SOURCE_DIR/.oh-my-zsh"
@@ -166,7 +170,7 @@ FILES_TO_RSYNC=(
     "$SOURCE_DIR/.p10k.zsh"
     "$SOURCE_DIR/.zsh_history"
     "$SOURCE_DIR/.zshrc"
-
+```
 ## FILEZILLA
 DEST_DIR="/mnt/sdd1/critical_settings/filezilla/"
 
@@ -203,7 +207,6 @@ DEST="/mnt/sdd1/critical_settings/yumrepos/"
 # SAMBA
 /etc/samba/smb.conf
 
-´´´
 
 # Vorta / borg ignore 
 
@@ -329,10 +332,13 @@ sudo dnf install virt-viewer
  newgrp docker
 
 # docker-compose
+```
+
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose  
 sudo chmod +x /usr/local/bin/docker-compose
 
-# konsave - SAVE KDE THEME SETTINGS
+```
+# KONSAVE - SAVE KDE THEME SETTINGS
 
 ## INSTALL
 ```
@@ -533,14 +539,14 @@ org.freeplane.App
 ```
 
 # CLEAN KERNELS
+```
 chmod +x ./removeoldkernels.sh
 ./removeoldkernels.sh
 reboot
-
+```
 
 # Java install - download compacted file at oracle site - individual users - alan/root
-
-´´´
+```
 mkdir -p /usr/local/java
 cp /home/alan/Downloads/jdk-21_linux-x64_bin.tar.gz /usr/local/java
 cd /usr/local/java
@@ -553,9 +559,10 @@ JAVA_HOME=/usr/local/java/jdk-21.0.2
 PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
 export JAVA_HOME
 export PATH
-´´´
+```
 
 ## user root
+```
 update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk-21.0.2/bin/java" 1
 update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk-21.0.2/bin/javac" 1
 update-alternatives --install "/usr/bin/javaws.itweb" "javaws.itweb" "/usr/local/java/jdk-21.0.2/bin/javaws.itweb" 1
@@ -568,30 +575,33 @@ jar --version
 echo $JAVA_HOME
 cd
 vi .zshrc
-   
+```
+
    #Java
+```
 export JAVA_HOME=/usr/local/java/jdk-21.0.2
-´´´
+```
 
 ## user alan
-´´´
+```
 sudo update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk-21.0.2/bin/java" 1
 sudo update-alternatives --install "/usr/bin/jar" "jar" "/usr/local/java/jdk-21.0.2/bin/jar" 1
 sudo update-alternatives --set java /usr/local/java/jdk-21.0.2/bin/java
 sudo update-alternatives --set jar /usr/local/java/jdk-21.0.2/bin/jar
 source .zshrc
-´´´
+```
 ## test
-´´´
+```
 java
 jar
 jar --version
 jar
 java --version
 jar --version
-
+```
 # for all users aproach - worked well doing script in profile.d
 ex for java 1.8:
+```
 tar -xvf jdk-8u391-linux-x64.tar.gz
 mv jdk1.8.0_391/ /opt
 :>/etc/profile.d/java.sh
@@ -602,10 +612,10 @@ vi /etc/profile.d/java.sh
 export JAVA_HOME=/opt/jdk1.8.0_391
 export PATH=$JAVA_HOME/bin:$PATH
 
+```
 
-´´´
-
-# Nvidia install - not perfect. use site - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
+# Nvidia install - not perfect. 
+use this guide - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
 ```
 sudo dnf remove akmod-nvidia xorg-x11-drv-nvidia-cuda
 reboot
