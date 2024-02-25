@@ -446,6 +446,14 @@ sudo systemctl restart smb
 tail -f /var/log/samba/log.smbd
 ```
 
+# SHARED NAS FOLDERS NOT MOUNTING AT STARTUP
+
+```
+sudo systemctl enable NetworkManager-wait-online.service
+
+```
+
+
 # globalprotect GUI install FOR MICROSOFT OAUTH
 ```
 sudo yum localinstall globalprotect-openconnect-snapshot-1.4.6+2snapshot.g5714063-1.1.x86_64.rpm
