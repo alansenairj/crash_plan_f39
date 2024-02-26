@@ -318,7 +318,7 @@ ripgrep-14.0.3-1.fc39.x86_64
 python3-pip-23.2.1-1.fc39.noarch
 easyeffects-7.1.3-1.fc39.x86_64
 sudo dnf install virt-viewer
-
+sudo dnf install cheat.x86_64
 ```
 
 # docker

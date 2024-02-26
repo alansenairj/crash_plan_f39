@@ -2,7 +2,7 @@
 
 # Define name, source and destination paths
 BACKUP_NAME=KEEPASS_ALAN
-SOURCE_DIR="/home/alan/OneDrive/keepass"
+SOURCE_DIR="/home/alan/keepass"
 BACKUP_BASE="/mnt/tplink-share/keepass/alan"
 
 # log and date part
