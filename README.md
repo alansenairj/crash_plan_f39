@@ -319,6 +319,7 @@ python3-pip-23.2.1-1.fc39.noarch
 easyeffects-7.1.3-1.fc39.x86_64
 sudo dnf install virt-viewer
 sudo dnf install cheat.x86_64
+sudo dnf install -y nmap
 ```
 
 # docker
@@ -621,6 +622,34 @@ export JAVA_HOME=/opt/jdk1.8.0_391
 export PATH=$JAVA_HOME/bin:$PATH
 
 ```
+
+# Install syncthing
+```
+sudo dnf install syncthing
+
+systemctl --user enable --now syncthing.service
+
+systemctl --user status syncthing.service
+
+systemctl --user restart syncthing.service
+
+Access the GUI via the following URL: http://127.0.0.1:8384/
+
+```
+
+# Install Zoom
+
+```
+yum localinstall zoom< download from zoom website >
+```
+
+# Install localsend ( trade files )
+
+```
+flatpak install flathub org.localsend.localsend_app
+```
+
+
 
 # Nvidia install - not perfect. 
 use this guide - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
