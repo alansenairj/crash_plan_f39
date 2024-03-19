@@ -320,6 +320,7 @@ easyeffects-7.1.3-1.fc39.x86_64
 sudo dnf install virt-viewer
 sudo dnf install cheat.x86_64
 sudo dnf install -y nmap
+sudo dnf install -y jq
 ```
 
 # docker
@@ -339,6 +340,41 @@ sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 ```
+
+# kubectl install
+
+```
+
+curl -LO "https://dl.k8s.io/release/$(curl -L \
+  -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+
+sudo install -o root -g root -m 0755 kubectl \
+  /usr/local/bin/kubectl
+
+
+
+# using repo
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+sudo yum install -y kubectl
+
+```
+
+# yaml parser
+
+wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
+ sudochmod +x /usr/bin/yq
+
+
 # KONSAVE - SAVE KDE THEME SETTINGS
 
 ## INSTALL
@@ -533,6 +569,15 @@ vi .zshrc
 source .zshrc
 p10k configure
 ```
+
+# SNAP PAKs
+
+```
+sudo snap install pomatez
+
+```
+
+
 
 # FLATPAKS
 ```
