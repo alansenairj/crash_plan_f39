@@ -730,9 +730,18 @@ sudo grubby --update-kernel=ALL --args='nvidia-drm.modeset=1'
 ```
 sudo dnf install nvidia-vaapi-driver libva-utils vdpauinfo
 
-# NVIDIA DRIVER UPDATE
+```
+# KDE TASKBAR FREEZING
 
+![Screenshot_20240413_010111](https://github.com/alansenairj/crash_plan_f39/assets/20565821/f80368e6-d311-4ed8-ba82-32174fcc8e02)
 
+![image](https://github.com/alansenairj/crash_plan_f39/assets/20565821/262832f2-e8e4-47d9-ab83-4b3f65cece5f)
 
+# BLACK SCREEND AFTER KERNEL UPDATE (DNF) OR DRIVER UPDATE
 
 ```
+dracut /boot/initramfs-$(uname -r).img $(uname -r) --force
+
+```
+
+
