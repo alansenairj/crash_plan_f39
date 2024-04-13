@@ -729,4 +729,10 @@ sudo grubby --update-kernel=ALL --args='nvidia-drm.modeset=1'
 # vpau for firefox - not tested
 ```
 sudo dnf install nvidia-vaapi-driver libva-utils vdpauinfo
+
+# NVIDIA DRIVER UPDATE
+
+
+
+
 ```
