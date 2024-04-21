@@ -756,7 +756,11 @@ sudo dnf --releasever=39 install akmod-nvidia xorg-x11-drv-nvidia --nogpgcheck
 
 sudo dnf install xorg-x11-drv-nvidia-cuda
 sudo dnf install xorg-x11-drv-nvidia-cuda-libs
-sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing   
+
+The main repos include ffmpeg-free which only supports royalty-free codecs like vp8, vp9, av1, etc. The "full" ffmpeg package from rpmfusion includes additional support for patented codecs like h264, h265, etc
+
+
 sudo dnf groupupdate multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 sudo dnf groupupdate sound-and-video
 sudo dnf install nvidia-vaapi-driver
