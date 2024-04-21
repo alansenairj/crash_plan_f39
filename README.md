@@ -1,4 +1,4 @@
-
+# FEDORA 39
 # CRASH PLAN - BACKUP 321 - SECOND COPY PLAN
 
 ```
@@ -65,9 +65,9 @@ less /var/log/rsync/rsync.log
 ```
 SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-MAILTO=root
+MAILTO=/dev/null
 
-# For details see man 4 crontabs
+# For details see man 4 crontabs - FOR ROOT USER
 
 # Example of job definition:
 # .---------------- minute (0 - 59)
@@ -79,35 +79,40 @@ MAILTO=root
 # *  *  *  *  * user-name  command to be executed
 
 # por hora
-
+#0 */36 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_nvme_smb.sh"
+#0 */36 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_smb_smb.sh"
 
 # por dia
-0 9 * * *  "/home/alan/scripts/usb/root/rsync_vpnconex_usb_sync.sh" >/dev/null
+#0 9 * * *  "/home/alan/scripts/usb/root/rsync_vpnconex_usb_sync.sh" >/dev/null
 02 9 * * * "/home/alan/scripts/smb/root/rsync_vpnconex_smb_sync.sh" >/dev/null
 
 # semana
-0 9 * * 2  "/home/alan/scripts/usb/root/rsync_fstab_usb_sync.sh" >/dev/null
+#0 9 * * 2  "/home/alan/scripts/usb/root/rsync_fstab_usb_sync.sh" >/dev/null
 02 9 * * 2 "/home/alan/scripts/smb/root/rsync_fstab_smb_sync.sh" >/dev/null
-05 9 * * 2 "/home/alan/scripts/usb/root/rsync_yumrepos_usb_sync.sh" >/dev/null
+#05 9 * * 2 "/home/alan/scripts/usb/root/rsync_yumrepos_usb_sync.sh" >/dev/null
 09 9 * * 2 "/home/alan/scripts/smb/root/rsync_yumrepos_smb_sync.sh" >/dev/null
+#09 10 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_nvme_smb.sh"
+#25 10 * * *  "/home/alan/scripts/smb/root/rsync_os_usb_to_smb_smb.sh"
+
 
 # por mes
 0 10 1 * *  "/home/alan/scripts/smb/root/rsync_dnf_smb_sync.sh" >/dev/null
-01 10 1 * * "/home/alan/scripts/usb/root/rsync_dnf_usb_sync.sh" >/dev/null
+#01 10 1 * * "/home/alan/scripts/usb/root/rsync_dnf_usb_sync.sh" >/dev/null
 02 10 1 * * "/home/alan/scripts/smb/root/rsync_crontab_smb_sync.sh" >/dev/null
-03 10 1 * * "/home/alan/scripts/usb/root/rsync_crontab_usb_sync.sh" >/dev/null
-04 10 1 * * "/home/alan/scripts/usb/root/rsync_sambaconf_usb_sync.sh" >/dev/null
+#03 10 1 * * "/home/alan/scripts/usb/root/rsync_crontab_usb_sync.sh" >/dev/null
+#04 10 1 * * "/home/alan/scripts/usb/root/rsync_sambaconf_usb_sync.sh" >/dev/null
 05 10 1 * * "/home/alan/scripts/smb/root/rsync_sambaconf_smb_sync.sh" >/dev/null
-06 10 1 * * "/home/alan/scripts/usb/root/rsync_sddm_login_usb_sync.sh" >/dev/null
+#06 10 1 * * "/home/alan/scripts/usb/root/rsync_sddm_login_usb_sync.sh" >/dev/null
 07 10 1 * * "/home/alan/scripts/smb/root/rsync_sddm_login_smb_sync.sh" >/dev/null
-08 10 1 * * "/home/alan/scripts/usb/root/rsync_rcloneservice_usb.sh" >/dev/null
+#08 10 1 * * "/home/alan/scripts/usb/root/rsync_rcloneservice_usb.sh" >/dev/null
 09 10 1 * * "/home/alan/scripts/smb/root/rsync_rcloneservice_smb_sync.sh" >/dev/null
-10 10 1 * * "/home/alan/scripts/usb/root/rsync_solaar_mouse_usb_sync.sh" >/dev/null
+#10 10 1 * * "/home/alan/scripts/usb/root/rsync_solaar_mouse_usb_sync.sh" >/dev/null
 11 10 1 * * "/home/alan/scripts/smb/root/rsync_solaar_mouse_smb_sync.sh" >/dev/null
-12 10 1 * * "/home/alan/scripts/usb/root/rsync_themes_usb_sync.sh" >/dev/null
+#12 10 1 * * "/home/alan/scripts/usb/root/rsync_themes_usb_sync.sh" >/dev/null
 13 10 1 * * "/home/alan/scripts/smb/root/rsync_themes_smb_sync.sh" >/dev/null
 
 #por ano
+
 
 
 ```
@@ -490,6 +495,25 @@ sudo systemctl enable NetworkManager-wait-online.service
 
 ```
 
+# STOP RESOLVD FOR PIHOLE DNS WORK CORRECT
+
+```
+systemctl stop systemd-resolved
+systemctl disable systemd-resolved
+
+```
+
+# hp printer
+```
+# Ligar no cabo USB a impressora primeiro
+
+
+# Abrir terminal
+
+sudo dnf install hplip hplip-gui
+sudo hp-setup 192.168.129.107
+```
+
 
 # globalprotect GUI install FOR MICROSOFT OAUTH
 ```
@@ -523,7 +547,8 @@ eval "$(mcfly init zsh)"
 
 # backgroud login screen
 ```
-mv 5120x2880.png 5120x2880.png.old
+cd /usr/share/sddm/themes/breeze/
+ 5120x2880.png.old
 cp /home/alan/themes/wall.jpg .
 rm -rf wall.jpg
 cp /home/alan/themes/wall.png .
@@ -552,7 +577,7 @@ sudo fwupdmgr get-updates
 systemctl stop firewalld
 cd /etc/selinux
 sudo vi config
-SELINUX=0
+SELINUX=disabled
 systemctl disable firewalld
 ```
 
@@ -574,6 +599,7 @@ p10k configure
 
 ```
 sudo snap install pomatez
+
 
 ```
 
@@ -599,6 +625,10 @@ chmod +x ./removeoldkernels.sh
 reboot
 ```
 
+# dbeaver
+https://dbeaver.io/download/
+yum localinstall https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
+
 # Java install - download compacted file at oracle site - individual users - alan/root
 ```
 mkdir -p /usr/local/java
@@ -608,11 +638,13 @@ tar -xvzf jdk-21_linux-x64_bin.tar.gz
 cd jdk-21.0.2
 
 vi /etc/profile
-   #java
+
+#java
 JAVA_HOME=/usr/local/java/jdk-21.0.2
 PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
 export JAVA_HOME
 export PATH
+
 ```
 
 ## user root
@@ -652,6 +684,8 @@ jar --version
 jar
 java --version
 jar --version
+
+
 ```
 # for all users aproach - worked well doing script in profile.d
 ex for java 1.8:
@@ -694,9 +728,105 @@ yum localinstall zoom< download from zoom website >
 flatpak install flathub org.localsend.localsend_app
 ```
 
+# BLUETOOTH
+
+```
+grep -nH "Controller" /etc/bluetooth/main.conf 
+sudo vi /etc/bluetooth/main.conf 
+Experimental=true
+```
+
+# NVIDIA DRIVER  https://rpmfusion.org/Howto/NVIDIA#Current_GeForce.2FQuadro.2FTesla
+
+```
+systemctl set-default multi-user.target  # para restaurar -  systemctl set-default graphical.target
+nvidia-installer --uninstall
+dnf remove xorg-x11-drv-nvidia\*
+
+```
+## HABILITAR REPOS NO KDE DISCOVERY - SETTING OU
+```
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 
-# Nvidia install - not perfect. 
+sudo dnf install "kernel-devel-uname-r = $(uname -r)"
+sudo dnf update -y
+sudo dnf --releasever=39 install akmod-nvidia xorg-x11-drv-nvidia --nogpgcheck
+
+
+sudo dnf install xorg-x11-drv-nvidia-cuda
+sudo dnf install xorg-x11-drv-nvidia-cuda-libs
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf groupupdate multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+sudo dnf groupupdate sound-and-video
+sudo dnf install nvidia-vaapi-driver
+sudo dnf install vulkan
+sudo dnf install nvidia-vaapi-driver libva-utils vdpauinfo
+sudo dnf install xorg-x11-drv-nvidia-power
+
+
+sudo systemctl enable nvidia-{suspend,resume,hibernate}
+systemctl disable nvidia-fallback.service
+
+
+## for grub
+
+rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1
+
+
+## This is a command to force a rebuild of the Nvidia drivers against your running kernel.
+sudo akmods --force && sudo dracut --force
+or
+dracut /boot/initramfs-$(uname -r).img $(uname -r)
+
+# I got problems with kernel and entreies grub boot. I need to write a menu to work. 
+# rescue mode
+dhclient
+
+
+grubby --info=ALL
+grubby --remove-kernel=<n> <remove that old kernel index - must check index>
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+dnf reinstall grub2-efi shim grub2-tools
+
+grub2-set-default 0
+  grubby --default-index
+  grubby --default-kernel
+  ls /boot/loader/entries
+  dnf reinstall kernel-devel
+
+# create menu  
+grubby --info=ALL > /boot/loader/entries/fedora.conf
+vi /boot/loader/entries/fedora.conf
+
+title Fedora 39 Desktop w/ Wayland - vmlinuz-6.8.6-200.fc39.x86_64 39 (kde plasma)
+linux /vmlinuz-6.8.6-200.fc39.x86_64
+initrd /initramfs-6.8.6-200.fc39.x86_64.img
+options root=UUID=2345a93f-77bd-4007-adc9-4d50096428e4 ro rd.driver.blacklist=nouveau modprobe.blacklist=nouveau rhgb quiet nvidia-drm.modeset=1 rd.driver.blacklist=nouveau modprobe.blacklist=nouveau
+grub_users $grub_users
+grub_arg --unrestricted
+grub_class fedora
+
+
+grubby --set-default=/boot/vmlinuz-6.8.6-200.fc39.x86_64
+grubby --remove-kernel=/boot/vmlinuz-0-rescue-b355971db54d423382bee72d20e6b161
+
+
+# lock driver version to not update it
+dnf install python3-dnf-plugin-versionlock
+rpm -qa xorg-x11-drv-nvidia* *kmod-nvidia* nvidia-{settings,xconfig,modprobe,persistenced}  >> /etc/dnf/plugins/versionlock.list
+
+sudo cp /usr/share/X11/xorg.conf.d/nvidia.conf /etc/X11/xorg.conf.d/nvidia.conf
+
+```
+
+
+
+
+
+
+# Nvidia install - not perfect. - TO USE NVIDIA DRIVER IS NOT GOOD
 use this guide - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
 ```
 sudo dnf remove akmod-nvidia xorg-x11-drv-nvidia-cuda
