@@ -264,7 +264,7 @@ gpgkey=https://keys.anydesk.com/repos/RPM-GPG-KEY
 EOF
 ```
 
-# PAKAGES
+# PACKAGES
 
 ```
 sudo dnf install vim
