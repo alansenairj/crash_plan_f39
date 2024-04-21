@@ -772,8 +772,9 @@ systemctl disable nvidia-fallback.service
 
 ## for grub start - check it
 
+```
 rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1
-
+```
 
 ## This is a command to force a rebuild of the Nvidia drivers against your running kernel.
 ```
@@ -785,7 +786,7 @@ dracut /boot/initramfs-$(uname -r).img $(uname -r)
 # grub update
 
 
-# I got problems with kernel and entreies grub boot. I need to write a menu to work. 
+### I got problems with kernel and entries grub boot. I need to write a menu to work. 
 # rescue mode
 ```
 dhclient
@@ -835,9 +836,9 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
 # lock driver version to not update it
+```
 dnf install python3-dnf-plugin-versionlock
 rpm -qa xorg-x11-drv-nvidia* *kmod-nvidia* nvidia-{settings,xconfig,modprobe,persistenced}  >> /etc/dnf/plugins/versionlock.list
-
 sudo cp /usr/share/X11/xorg.conf.d/nvidia.conf /etc/X11/xorg.conf.d/nvidia.conf
 
 ```
@@ -847,7 +848,7 @@ sudo cp /usr/share/X11/xorg.conf.d/nvidia.conf /etc/X11/xorg.conf.d/nvidia.conf
 
 
 
-# Nvidia install - not perfect. - TO USE NVIDIA DRIVER IS NOT GOOD
+# Nvidia install - not perfect. -IT IS NOT GOOD TO USE NVIDIA DRIVER 
 use this guide - https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/#210-all-is-done-and-then-reboot-back-to-runlevel-5
 ```
 sudo dnf remove akmod-nvidia xorg-x11-drv-nvidia-cuda
