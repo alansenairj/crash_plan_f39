@@ -768,19 +768,26 @@ sudo dnf install xorg-x11-drv-nvidia-power
 sudo systemctl enable nvidia-{suspend,resume,hibernate}
 systemctl disable nvidia-fallback.service
 
+```
 
-## for grub
+## for grub start - check it
 
 rd.driver.blacklist=nouveau modprobe.blacklist=nouveau nvidia-drm.modeset=1
 
 
 ## This is a command to force a rebuild of the Nvidia drivers against your running kernel.
+```
 sudo akmods --force && sudo dracut --force
 or
 dracut /boot/initramfs-$(uname -r).img $(uname -r)
+```
+
+# grub update
+
 
 # I got problems with kernel and entreies grub boot. I need to write a menu to work. 
 # rescue mode
+```
 dhclient
 
 
@@ -795,8 +802,10 @@ grub2-set-default 0
   grubby --default-kernel
   ls /boot/loader/entries
   dnf reinstall kernel-devel
+```
 
-# create menu  
+## create grub entry for menu  
+```
 grubby --info=ALL > /boot/loader/entries/fedora.conf
 vi /boot/loader/entries/fedora.conf
 
@@ -807,10 +816,22 @@ options root=UUID=2345a93f-77bd-4007-adc9-4d50096428e4 ro rd.driver.blacklist=no
 grub_users $grub_users
 grub_arg --unrestricted
 grub_class fedora
+```
 
-
+# force boot to find new kernel
+```
 grubby --set-default=/boot/vmlinuz-6.8.6-200.fc39.x86_64
 grubby --remove-kernel=/boot/vmlinuz-0-rescue-b355971db54d423382bee72d20e6b161
+```
+# to save last loaded kernel
+```
+vi /etc/default/grub 
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+
+grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+
 
 
 # lock driver version to not update it
