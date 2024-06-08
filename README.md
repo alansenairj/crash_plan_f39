@@ -326,6 +326,15 @@ sudo dnf install virt-viewer
 sudo dnf install cheat.x86_64
 sudo dnf install -y nmap
 sudo dnf install -y jq
+sudo dnf -y install skopeo
+sudo dnf install hping3.x86_64
+dnf -y install nmstate
+```
+
+# zsh completions (openssl etc)
+```
+dnf config-manager --add-repo https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/Fedora_Rawhide/shells:zsh-users:zsh-completions.repo
+dnf install zsh-completions
 ```
 
 # docker
