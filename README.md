@@ -892,6 +892,11 @@ sudo akdods --force && dracut --force
 sudo grubby --update-kernel=ALL --args='nvidia-drm.modeset=1'
 ```
 
+# KONSOLE DISABLE ALT FOCUS MENU
+
+![image](https://github.com/alansenairj/crash_plan_f39/assets/20565821/c2218e0e-cee8-4eeb-b63f-7c91a24717ac)
+
+
 # vpau for firefox - not tested
 ```
 sudo dnf install nvidia-vaapi-driver libva-utils vdpauinfo
