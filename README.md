@@ -226,7 +226,7 @@ DEST="/mnt/sdd1/critical_settings/yumrepos/"
 
 # OS RECONFIGURE - APPS, FIXES AND CONFIGURATIONS
 
-### marcar os que tem que baixar rmp 
+### marcar os que tem que baixar rpm
 - vpn
 - virtual VirtualBox
 - nvidia
@@ -570,6 +570,7 @@ vi theme.conf
 
 ```
 sudo systemctl disable NetworkManager-wait-online.service
+
 sudo nano /etc/systemd/system.conf
 DefaultTimeoutStartSec=15s
 DefaultTimeoutStopSec=15s
