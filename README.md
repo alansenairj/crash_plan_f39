@@ -639,6 +639,12 @@ reboot
 https://dbeaver.io/download/
 yum localinstall https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm
 
+Restore dbeaver
+```
+/home/alan/.local/share/DBeaverData/workspace6/
+```
+
+
 # Java install - download compacted file at oracle site - individual users - alan/root
 ```
 mkdir -p /usr/local/java
